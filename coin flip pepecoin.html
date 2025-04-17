@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coin Flip</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        #coin-container {
+            width: 150px;
+            height: 150px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            border-radius: 50%; /* Make it round */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add some shadow */
+            position: relative; /* For absolute positioning of the image */
+        }
+
+        #coin {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensure the image covers the entire container */
+            border-radius: 50%; /* Make it round */
+            /* Removed: transition: transform 0.3s ease-in-out; */
+            position: absolute; /* Position absolutely within the container */
+            top: 0;
+            left: 0;
+        }
+
+        .coin-flipping {
+           /* Removed content: url().  We will change the src attribute in JS */
+            animation: spin 2s linear infinite; /* Start a spin animation */
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+
+        #flip-button {
+            padding: 12px 24px;
+            font-size: 18px;
+            cursor: pointer;
+            background-color: #4CAF50; /* Green */
+            color: white;
+            border: none;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        #flip-button:hover {
+            background-color: #367c39; /* Darker green */
+            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+        }
+
+        #flip-button:disabled {
+            background-color: #cccccc; /* Gray */
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        #result {
+            margin-top: 25px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="coin-container">
+            <img id="coin" src="https://ibb.co/40PLs8L" alt="Coin">
+        </div>
+        <button id="flip-button">Flip</button>
+        <p id="result"></p>
+    </div>
+    <script>
+        const flipButton = document.getElementById('flip-button');
+        const coin = document.getElementById('coin');
+        const resultText = document.getElementById('result');
+        const coinContainer = document.getElementById('coin-container')
+
+        flipButton.addEventListener('click', () => {
+            // Disable the button to prevent multiple clicks
+            flipButton.disabled = true;
+            // Start the animation by changing the image source.
+             coin.src = "https://ibb.co/RTkxPZP0";
+            coin.classList.add('coin-flipping');
+            resultText.textContent = '';
+
+            // Generate a random stop time between 5 and 15 seconds (in milliseconds)
+            const randomTime = Math.random() * (2500 - 4000) + 3000;
+
+            // Stop the animation after the random time
+            setTimeout(() => {
+                coin.classList.remove('coin-flipping');
+                //Determine the result
+                const randomNumber = Math.random();
+                const outcome = randomNumber < 0.5 ? 'Heads' : 'Tails';
+                resultText.textContent = `It's ${outcome}!`;
+                coin.src = outcome === 'Heads' ? 'https://ibb.co/40PLs8L' : 'https://ibb.co/YB8pbTqW'; // Change to heads or tails image.
+
+                // Re-enable the button
+                flipButton.disabled = false;
+            }, randomTime);
+        });
+    </script>
+</body>
+</html>
