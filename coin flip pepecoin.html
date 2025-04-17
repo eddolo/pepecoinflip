@@ -86,7 +86,7 @@
 <body>
     <div class="container">
         <div id="coin-container">
-            <img id="coin" src="https://media.discordapp.net/attachments/1195951620421333142/1362356348423241738/Pepecoin_onWhite_IconOnly-RGB-_Converted__1.png?ex=680218b8&is=6800c738&hm=724bbf2cc2e4ce9f94b5f62451fd82cdf57c644d10ef649fceb7cc4f1c04cc09&=&format=webp&quality=lossless&width=735&height=735" alt="Coin">
+            <img id="coin" src="https://i.ibb.co/jjgYVyY/head.png" alt="Coin">
         </div>
         <button id="flip-button">Flip</button>
         <p id="result"></p>
@@ -101,7 +101,7 @@
             // Disable the button to prevent multiple clicks
             flipButton.disabled = true;
             // Start the animation by changing the image source.
-             coin.src = "https://media.discordapp.net/attachments/1162499247040634883/1361651916769333358/pepecoinflip.gif?ex=680182eb&is=6800316b&hm=84d8853e17c0c2da9249c0c07775f647fc5b757f6a79917f9f4fa97be48c9b12&=";
+             coin.src = "https://i.ibb.co/KxpM7R7q/flip.gif";
             coin.classList.add('coin-flipping');
             resultText.textContent = '';
 
@@ -115,7 +115,7 @@
                 const randomNumber = Math.random();
                 const outcome = randomNumber < 0.5 ? 'Heads' : 'Tails';
                 resultText.textContent = `It's ${outcome}!`;
-                coin.src = outcome === 'Heads' ? 'https://media.discordapp.net/attachments/1195951620421333142/1362356348423241738/Pepecoin_onWhite_IconOnly-RGB-_Converted__1.png?ex=680218b8&is=6800c738&hm=724bbf2cc2e4ce9f94b5f62451fd82cdf57c644d10ef649fceb7cc4f1c04cc09&=&format=webp&quality=lossless&width=735&height=735' : 'https://media.discordapp.net/attachments/1195951620421333142/1362356349224357949/piconpepe.png?ex=680218b9&is=6800c739&hm=d93e953b6f87164d60d7a7609be8c3b3091595db7afa3b151792ecd3e723c9ba&=&format=webp&quality=lossless&width=735&height=735'; // Change to heads or tails image.
+                coin.src = outcome === 'Heads' ? 'https://i.ibb.co/jjgYVyY/head.png' : 'https://i.ibb.co/MkpM953h/tail.png'; // Change to heads or tails image.
 
                 // Re-enable the button
                 flipButton.disabled = false;
